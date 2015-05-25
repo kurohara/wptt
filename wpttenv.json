@@ -1,0 +1,6 @@
+{
+  "themedir": "./theme",
+  "jadedir": "./src",
+  "styldir": "./src",
+  "prebuilt": "./prebuilt"
+}
