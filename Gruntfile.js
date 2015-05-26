@@ -25,19 +25,18 @@ module.exports = function(grunt) {
           usestrip: true,
           client: false,
           data: {
-            theme: { name: '<%= pkg.name ?>' },
+            theme: { name: '<%= wpttenv.name || pkg.name %>' },
           },
         },
         files: [
           {
-            cwd: path.resolve('.'), 
             src: '<%= wpttenv.jadedir %>/headerfooter.jade',
-            dest: '<%= wpttenv.prebuilt %>/headerfooter.php'
+            dest: '<%= wpttenv.tmpdir %>/headerfooter.php'
           },
           {
             expand: true,
-            cwd: path.resolve('.'), 
-            src: [ '<%= wpttenv.jadedir %>/*.jade', '!<%= wpttenv.jadedir %>/headerfooter.jade' ],
+            cwd: '<%= wpttenv.jadedir %>', 
+            src: [ '*.jade', '!headerfooter.jade' ],
             dest: '<%= wpttenv.themedir %>',
             ext: '.php',
           }
@@ -45,26 +44,45 @@ module.exports = function(grunt) {
       }
     },
     stylus: {
-      files:[
-        {
-          src: '<%= wpttenv.styldir %>/*.styl',
-          dest: '<%= wpttenv.themedir %>'
-        }
-      ]
+      default: {
+        files:[
+          {
+            expand: true,
+            cwd: '<%= wpttenv.jadedir %>',
+            src: './**/*.styl',
+            dest: '<%= wpttenv.themedir %>',
+          }
+        ]
+      }
     },
     splitfile: {
       headerfooter: {
         options: {
-          separator: /<!-- separator mark for splitter tool -->/ ,
+          separator: /<!--[ ]+separator mark for splitter tool[ ]*-->/ ,
           prefix: [ 'header', 'footer' ]
         },
-        src: [ '<%= wpttenv.prebuilt %>/headerfooter.php' ],
+        src: [ '<%= wpttenv.tmpdir %>/headerfooter.php' ],
         dest: '<%= wpttenv.themedir %>'
       }
     },
+    clean: {
+      default: [ '<%= wpttenv.themedir %>/**/*' ],
+    },
+    copy: {
+      default: {
+        files: [
+          {
+            expand: true,
+            cwd: '<%= wpttenv.prebuilt %>',
+            src: './**',
+            dest: '<%= wpttenv.themedir %>/'
+          },
+        ],
+      },
+    },
     pot: {
       options: {
-          text_domain: '<%= pkg.name %>', //Your text domain. Produces my-text-domain.pot
+          text_domain: '<%= wpttenv.name || pkg.name %>', //Your text domain. Produces my-text-domain.pot
           dest: 'languages/', //directory to place the pot file
           keywords: [ //WordPress localisation functions
             '__:1',
@@ -84,13 +102,15 @@ module.exports = function(grunt) {
            ],
       },
       files:{
-          src:  [ '**/*.php' ], //Parse all php files
           expand: true,
+          cwd: '<%= wpttenv.themedir %>',
+          src:  [ './**/*.php' ], //Parse all php files
       }
     }
   });
 
   // These plugins provide necessary tasks.
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-jade-mod');
@@ -98,8 +118,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-split-file');
   grunt.loadNpmTasks('grunt-pot');
 
+  grunt.registerTask('compile', [ 'jade', 'stylus', 'splitfile' ]);
+
   // Default task.
-  grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
+  grunt.registerTask('default', [ 'copy', 'compile' ]);
 
   grunt.registerTask('setup', function() {
     var wpttenv = grunt.config('wpttenv');
