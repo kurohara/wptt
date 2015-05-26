@@ -45,12 +45,19 @@ module.exports = function(grunt) {
     },
     stylus: {
       default: {
+        options: {
+          compress: false,
+          define: {
+            themename: '<%= wpttenv.name || pkg.name %>',
+          },
+        },
         files:[
           {
             expand: true,
             cwd: '<%= wpttenv.jadedir %>',
-            src: './**/*.styl',
-            dest: '<%= wpttenv.themedir %>',
+            src: '*.styl',
+            dest: '<%= wpttenv.tmpdir %>',
+            ext: '.css',
           }
         ]
       }
@@ -69,7 +76,7 @@ module.exports = function(grunt) {
       default: [ '<%= wpttenv.themedir %>/**/*' ],
     },
     copy: {
-      default: {
+      prebuilt: {
         files: [
           {
             expand: true,
@@ -77,7 +84,26 @@ module.exports = function(grunt) {
             src: './**',
             dest: '<%= wpttenv.themedir %>/'
           },
+        ]
+      },
+      postbuild: {
+        files: [
+          {
+            expand: true,
+            cwd: '<%= wpttenv.tmpdir %>',
+            src: ['./**/*.css'],
+            dest: '<%= wpttenv.themedir %>/',
+          },
         ],
+        options: {
+          process: function(contents, filepath) {
+            if (filepath.match(/css$/)) {
+              return grunt.template.process(contents);
+            } else {
+              return contents;
+            }
+          },
+        },
       },
     },
     pot: {
@@ -121,7 +147,7 @@ module.exports = function(grunt) {
   grunt.registerTask('compile', [ 'jade', 'stylus', 'splitfile' ]);
 
   // Default task.
-  grunt.registerTask('default', [ 'copy', 'compile' ]);
+  grunt.registerTask('default', [ 'copy:prebuilt', 'compile', 'copy:postbuild' ]);
 
   grunt.registerTask('setup', function() {
     var wpttenv = grunt.config('wpttenv');
