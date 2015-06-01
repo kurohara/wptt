@@ -1,3 +1,14 @@
+
+/**
+ * prefunction to omit writing text domain argument.
+ * ex; 
+ *   _e('some text to show', $$$) 
+ *    --will be converted to --> _e('some text to show', '#{theme.name}')
+ */
+function replace_text_domain(input/*, options */) {
+  return input.replace(/\$\$+/, "'#{theme.name}'");
+}
+
 /*global module:false*/
 module.exports = function(grunt) {
   var path = require('path');
@@ -21,8 +32,9 @@ module.exports = function(grunt) {
       default: {
         options: {
           modifiers: [ 'phpjade' ],
+          usestrip: true, // option for phpjade
+          prefunction: replace_text_domain, // option for phpjade
           pretty: true, 
-          usestrip: true,
           client: false,
           data: {
             theme: { name: '<%= wpttenv.name || pkg.name %>' },
