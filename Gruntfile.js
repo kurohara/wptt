@@ -6,7 +6,7 @@
  *    --will be converted to --> _e('some text to show', '#{theme.name}')
  */
 function replace_text_domain(input/*, options */) {
-  return input.replace(/\$\$+/, "'#{theme.name}'");
+  return input.replace(/\$\$+/g, "#{theme.name}");
 }
 
 /*global module:false*/
@@ -37,7 +37,7 @@ module.exports = function(grunt) {
           pretty: true, 
           client: false,
           data: {
-            theme: { name: '<%= wpttenv.name || pkg.name %>' },
+            theme: { name: '<%= wpttenv.name %>' },
           },
         },
         files: [
@@ -60,7 +60,7 @@ module.exports = function(grunt) {
         options: {
           compress: false,
           define: {
-            themename: '<%= wpttenv.name || pkg.name %>',
+            themename: '<%= wpttenv.name %>',
           },
         },
         files:[
@@ -96,7 +96,16 @@ module.exports = function(grunt) {
             src: './**',
             dest: '<%= wpttenv.themedir %>/'
           },
-        ]
+        ],
+        options: {
+          process: function(contents, filepath) {
+            if (filepath.match("functions.php")) {
+              return grunt.template.process(contents);
+            } else {
+              return contents;
+            }
+          }
+        },
       },
       postbuild: {
         files: [
@@ -120,7 +129,7 @@ module.exports = function(grunt) {
     },
     pot: {
       options: {
-          text_domain: '<%= wpttenv.name || pkg.name %>', //Your text domain. Produces my-text-domain.pot
+          text_domain: '<%= wpttenv.name %>', //Your text domain. Produces my-text-domain.pot
           dest: 'languages/', //directory to place the pot file
           keywords: [ //WordPress localisation functions
             '__:1',
