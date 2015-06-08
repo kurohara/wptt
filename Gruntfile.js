@@ -37,6 +37,7 @@ module.exports = function(grunt) {
           pretty: true, 
           client: false,
           data: {
+            wpttenv: '<%= wpttenv %>',
             theme: { name: '<%= wpttenv.name %>' },
           },
         },
