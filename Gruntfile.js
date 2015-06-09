@@ -130,7 +130,7 @@ module.exports = function(grunt) {
     pot: {
       options: {
           text_domain: '<%= wpttenv.name %>', //Your text domain. Produces my-text-domain.pot
-          dest: 'languages/', //directory to place the pot file
+          dest: '<%= wpttenv.themedir %>/languages/', //directory to place the pot file
           keywords: [ //WordPress localisation functions
             '__:1',
             '_e:1',
@@ -168,7 +168,7 @@ module.exports = function(grunt) {
   grunt.registerTask('compile', [ 'jade', 'stylus', 'splitfile' ]);
 
   // Default task.
-  grunt.registerTask('default', [ 'copy:prebuilt', 'compile', 'copy:postbuild' ]);
+  grunt.registerTask('default', [ 'copy:prebuilt', 'compile', 'copy:postbuild', 'pot' ]);
 
   grunt.registerTask('setup', function() {
     var wpttenv = grunt.config('wpttenv');
