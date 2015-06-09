@@ -5,7 +5,7 @@ Dummy port from the 'Twenty Fifteen' theme which bundled with WordPress.
 
 ## Getting Started
 1. Get this source from github.  
-  ```shell
+  ```
   git clone https://github.com/kurohara/wptt
   ```
 2. Run setup script  
