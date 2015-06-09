@@ -3,10 +3,10 @@
  * prefunction to omit writing text domain argument.
  * ex; 
  *   _e('some text to show', $$$) 
- *    --will be converted to --> _e('some text to show', '#{theme.name}')
+ *    --will be converted to --> _e('some text to show', '#{wpttenv.name}')
  */
 function replace_text_domain(input/*, options */) {
-  return input.replace(/\$\$+/g, "#{theme.name}");
+  return input.replace(/\$\$+/g, "#{wpttenv.name}");
 }
 
 /*global module:false*/
@@ -38,7 +38,6 @@ module.exports = function(grunt) {
           client: false,
           data: {
             wpttenv: '<%= wpttenv %>',
-            theme: { name: '<%= wpttenv.name %>' },
           },
         },
         files: [
@@ -67,7 +66,7 @@ module.exports = function(grunt) {
         files:[
           {
             expand: true,
-            cwd: '<%= wpttenv.jadedir %>',
+            cwd: '<%= wpttenv.styldir %>',
             src: '*.styl',
             dest: '<%= wpttenv.tmpdir %>',
             ext: '.css',
@@ -93,17 +92,17 @@ module.exports = function(grunt) {
         files: [
           {
             expand: true,
-            cwd: '<%= wpttenv.prebuilt %>',
-            src: './**',
+            cwd: '<%= wpttenv.jadedir %>',
+            src: [ './**/*', '!./**/*.jade', '!./**/*.styl'],
             dest: '<%= wpttenv.themedir %>/'
           },
         ],
         options: {
           process: function(contents, filepath) {
-            if (filepath.match("functions.php")) {
-              return grunt.template.process(contents);
-            } else {
+            if (/.*\.png$|.*\.gif$|.*\.jpg$/.test(filepath)) {
               return contents;
+            } else {
+              return grunt.template.process(contents);
             }
           }
         },

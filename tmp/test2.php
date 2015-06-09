@@ -1,0 +1,3 @@
+<?php
+\MyTest\mytest1();
+

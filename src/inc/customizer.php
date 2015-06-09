@@ -1,9 +1,9 @@
-<?php namespace <%= wptt.name %>;
+<?php namespace <%= wpttenv.name %>;
 /**
  * wptt Customizer functionality
  *
  * @package WordPress
- * @subpackage <%= wptt.name %>
+ * @subpackage <%= wpttenv.name %>
  * @since wptt 1.0
  */
 
