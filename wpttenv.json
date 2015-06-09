@@ -11,6 +11,6 @@
   "themedir": "./theme",
   "jadedir": "./src",
   "styldir": "./src",
-  "prebuilt": "./prebuilt",
+  "prebuilt": "./src",
   "tmpdir": "./tmp"
 }

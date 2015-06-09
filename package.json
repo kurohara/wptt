@@ -1,5 +1,8 @@
 {
   "name": "wptt",
+  "description": "WordPress Template Template",
+  "version": "1.0.0",
+  "homepage": "https://github.com/kurohara/wptt",
   "engines": {
     "node": ">= 0.10.0"
   },

@@ -176,19 +176,28 @@ module.exports = function(grunt) {
     var done = this.async();
     inq.prompt([ 
       {
+        name: 'name',
+        default: wpttenv.name,
+        type: 'input',
+        message: 'What is the name of your theme? ',
+      },
+      {
+        name: 'author',
+        default: wpttenv.author,
+        type: 'input',
+        message: "What is author's name? ",
+      },
+      {
         name: 'themedir',
         default: wpttenv.themedir,
         type: 'input',
         message: 'Where to place the compiled theme files? ',
       },
-      {
-        name: 'srcdir',
-        default: wpttenv.srcdir,
-        type: 'input',
-        message: 'Where is the source code directory? ',
-      }
     ], function(answer) {
-console.log("answer['themedir'] = " + answer['themedir']);
+      for (var key in answer) {
+        wpttenv[key] = answer[key];
+      }
+      grunt.file.write('wpttenv.json', JSON.stringify(wpttenv, null, 2));
       done();
     });
   });
