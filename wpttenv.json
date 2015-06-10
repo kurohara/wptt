@@ -1,5 +1,5 @@
 {
-  "name": "mytheme",
+  "name": "mgitest",
   "uri": "",
   "author": "Hiroyoshi Kurohara(Microgadget,inc.)",
   "authoruri": "",
@@ -8,7 +8,7 @@
   "license": "GNU General Public License v2 or later",
   "licenseuri": "http://www.gnu.org/licenses/gpl-2.0.html",
   "tags": "",
-  "themedir": "./theme",
+  "themedir": "/Users/kurohara/work/wordpress/wp-content/themes/mgitest",
   "jadedir": "./src",
   "styldir": "./src",
   "prebuilt": "./src",

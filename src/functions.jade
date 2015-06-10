@@ -27,15 +27,15 @@
    */
   
   function ns_($str) {
-    return __NAMESPACE__ + $str;
+    return __NAMESPACE__ . $str;
   }
   
   function ns_name($str) {
-    return ns_('\\'+$str);
+    return ns_("\\" . $str);
   }
   
   function ns_tag($str) {
-    return ns_('_'+$str);
+    return ns_('_' . $str);
   }
   
   function add_ns_action($action_name, $function_name, $priority = 10, $accepted_args = 1) {

@@ -35,7 +35,7 @@ function custom_header_setup() {
 		'default-text-color'     => $default_text_color,
 		'width'                  => 954,
 		'height'                 => 1300,
-		'wp-head-callback'       => ns_tag('header_style'),
+		'wp-head-callback'       => ns_name('header_style'),
 	) ) );
 }
 add_ns_action( 'after_setup_theme', 'custom_header_setup' );

@@ -1,12 +1,13 @@
 <?php 
+namespace mgitest;
 /**
  * The template for displaying the header
  *
  * Displays all of the head element and everything up until the "site-content" div.
  *
  * @package WordPress
- * @subpackage mytheme
- * @since mytheme 1.0
+ * @subpackage mgitest
+ * @since mgitest 1.0
  */
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>  class="no-js">
@@ -20,7 +21,7 @@
   </head>
   <body <?php body_class(); ?> >
     <div id="page" class="hfeed site"><a href="#content" class="skip-link screen-reader-text">
-        <?php _e( 'Skip to content', 'mytheme' ); ?></a>
+        <?php _e( 'Skip to content', 'mgitest' ); ?></a>
       <div id="sidebar" class="sidebar">
         <header id="masthead" role="banner" class="site-header">
           <div class="site-branding">
@@ -37,23 +38,24 @@
               <?php echo $description; ?></p>
             <?php endif; ?>
             <button class="secondary-toggle">
-              <?php echo _e( 'Menu and widgets', 'mytheme' ); ?></button>
+              <?php echo _e( 'Menu and widgets', 'mgitest' ); ?></button>
           </div>
         </header>
-        <?php get_sidebar(); ?>; ?>
+        <?php get_sidebar(); ?>
       </div>
       <div id="content" class="site-content">
         <!---->
         <!-- end of header part-->
         <!-- separator mark for splitter tool--><?php 
+namespace mgitest;
 /**
  * The template for displaying the footer
  *
  * Contains the closing of the "site-content" div and all content after.
  *
  * @package WordPress
- * @subpackage mytheme
- * @since mytheme 1.0
+ * @subpackage mgitest
+ * @since mgitest 1.0
  */
 ?>
       </div>
@@ -62,11 +64,11 @@
 /**
  * Fires before the Twenty Fifteen footer text for footer customization.
  *
- * @since mytheme 1.0
+ * @since mgitest 1.0
  */
- do_action( 'mytheme_credits' );
-?><a href="<?php echo esc_url( __( 'https://wordpress.org/', 'mytheme' ) ); ?>">
-            <?php printf( __( 'Proudly powered by %s', 'mytheme' ), 'WordPress' ); ?></a>
+ do_action( 'mgitest_credits' );
+?><a href="<?php echo esc_url( __( 'https://wordpress.org/', 'mgitest' ) ); ?>">
+            <?php printf( __( 'Proudly powered by %s', 'mgitest' ), 'WordPress' ); ?></a>
         </div>
       </footer>
     </div>

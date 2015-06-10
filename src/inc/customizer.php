@@ -42,7 +42,7 @@ function customize_register( $wp_customize ) {
 		'transport'         => 'postMessage',
 	) );
 
-	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'sidebar_textcolor', array(
+	$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'sidebar_textcolor', array(
 		'label'       => __( 'Header and Sidebar Text Color', ns_("") ),
 		'description' => __( 'Applied to the header on small screens and the sidebar on wide screens.', ns_('') ),
 		'section'     => 'colors',
@@ -58,7 +58,7 @@ function customize_register( $wp_customize ) {
 		'transport'         => 'postMessage',
 	) );
 
-	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_background_color', array(
+	$wp_customize->add_control( new \WP_Customize_Color_Control( $wp_customize, 'header_background_color', array(
 		'label'       => __( 'Header and Sidebar Background Color', ns_('') ),
 		'description' => __( 'Applied to the header on small screens and the sidebar on wide screens.', ns_('') ),
 		'section'     => 'colors',
@@ -714,4 +714,4 @@ function color_scheme_css_template() {
 	</script>
 	<?php
 }
-add_action( 'customize_controls_print_footer_scripts', 'color_scheme_css_template' );
+add_ns_action( 'customize_controls_print_footer_scripts', 'color_scheme_css_template' );

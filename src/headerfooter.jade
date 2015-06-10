@@ -1,4 +1,5 @@
 :php
+  namespace #{wpttenv.name};
   /**
    * The template for displaying the header
    *
@@ -41,12 +42,13 @@ html(__=language_attributes(), class="no-js")
               p.site-description!= $description
             - endif;
             button.secondary-toggle!=_e( 'Menu and widgets', '$$' )
-        - get_sidebar(); ?>
+        - get_sidebar()
       div#content.site-content
         //
         // end of header part
         // separator mark for splitter tool
         :php
+          namespace #{wpttenv.name};
           /**
            * The template for displaying the footer
            *
