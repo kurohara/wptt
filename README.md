@@ -1,6 +1,6 @@
-# wptt, the WordPress Template Template.
+# wptt, the WordPress Theme Template.
 
-This is a phpjade template for WordPress template.  
+This is a phpjade template for WordPress theme.  
 Dummy port from the 'Twenty Fifteen' theme which bundled with WordPress.
 
 ## Getting Started
