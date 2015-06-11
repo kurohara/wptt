@@ -3,12 +3,19 @@
 This is a phpjade template for WordPress theme.  
 Dummy port from the 'Twenty Fifteen' theme which bundled with WordPress.
 
+**Produced theme uses the 'namespace' facility of php >= version 5.3, so you can not use the theme produced by this solution if your php engine is less than version 5.3.**
+
 ## Getting Started
 1. Get this source from github.  
   ```
   git clone https://github.com/kurohara/wptt
   ```
-2. Run setup script  
+2. Install dependencies.  
+  Under the 'wptt' directory, do  
+  ```
+  npm install
+  ```
+3. Run setup script  
   ```
   grunt setup
   ```
@@ -37,7 +44,7 @@ Dummy port from the 'Twenty Fifteen' theme which bundled with WordPress.
   }
   ```  
   
-  The 'wpttenv.json' file contains the information of your new theme.  
+  The 'wpttenv.json' file contains the information which will be used for new theme.  
 3. Edit the source files under the 'src' directory as you like.  
 4. Compile 'src' to WordPress theme.  
   Run the command:  
