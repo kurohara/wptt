@@ -71,6 +71,12 @@
   function ns_function_exists($funcname) {
     return function_exists(ns_name($funcname));
   }
+
+  function ns_do_action($action_name) {
+    $argarr = func_get_args();
+    $argarr[0] = ns_tag($argarr[0]);
+    return call_user_func_array('do_action', $argarr);
+  }
   
   /**
    * Set the content width based on the theme's design and stylesheet.

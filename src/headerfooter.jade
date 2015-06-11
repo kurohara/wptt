@@ -62,11 +62,11 @@ html(__=language_attributes(), class="no-js")
         div.site-info
           :php
             /**
-             * Fires before the Twenty Fifteen footer text for footer customization.
+             * Fires before the wptt footer text for footer customization.
              *
              * @since $$ 1.0
              */
-             do_action( '$$_credits' );
+             ns_do_action( 'credits' );
           a(href!=esc_url( __( 'https://wordpress.org/', '$$' ) ))
             - printf( __( 'Proudly powered by %s', '$$' ), 'WordPress' )
     - wp_footer()
