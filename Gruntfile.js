@@ -166,6 +166,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-pot');
 
   grunt.registerTask('compile', [ 'jade', 'stylus', 'splitfile' ]);
+  grunt.registerTask('style', ['stylus', 'copy:postbuild' ]);
+  grunt.registerTask('php', ['jade', 'splitfile', 'pot']);
 
   // Default task.
   grunt.registerTask('default', [ 'copy:prebuilt', 'compile', 'copy:postbuild', 'pot' ]);

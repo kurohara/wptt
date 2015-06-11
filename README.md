@@ -45,7 +45,7 @@ Dummy port from the 'Twenty Fifteen' theme which bundled with WordPress.
     "tmpdir": "./tmp"
   }
   ```  
-  
+
   The 'wpttenv.json' file contains the information which will be used for new theme.  
 3. Edit the source files under the 'src' directory as you like.  
 4. Compile 'src' to WordPress theme.  
@@ -56,6 +56,21 @@ Dummy port from the 'Twenty Fifteen' theme which bundled with WordPress.
   ```  
 
 5. You will get compiled theme under the 'theme' directory(this directory is the directory you answered at setup process), use it as WordPress theme.
+
+6. Debugging tips  
+  You can partially compile some portions:  
+  a. Just compile Jade templates.  
+    ```
+    grunt jade
+    ```
+  b. Just generate php files and pot file. (compile Jade templates and generate pot file)
+    ```
+    grunt php
+    ```
+  c. Just generate css files.  
+    ```
+    grunt style
+    ```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
