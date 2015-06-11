@@ -93,19 +93,25 @@ module.exports = function(grunt) {
           {
             expand: true,
             cwd: '<%= wpttenv.jadedir %>',
-            src: [ './**/*', '!./**/*.jade', '!./**/*.styl'],
+            src: [ './**/*', '!./**/*.jade', '!./**/*.styl', '!./**/*.png', '!./**/*.gif', '!./**/*.jpg'],
             dest: '<%= wpttenv.themedir %>/'
           },
         ],
         options: {
           process: function(contents, filepath) {
-            if (/.*\.png$|.*\.gif$|.*\.jpg$/.test(filepath)) {
-              return contents;
-            } else {
-              return grunt.template.process(contents);
-            }
+            return grunt.template.process(contents);
           }
         },
+      },
+      prebuilt_raw: {
+        files: [
+          {
+            expand: true,
+            cwd: '<%= wpttenv.jadedir %>',
+            src: [ './**/*.png', './**/*.jpg', './**/*.gif'],
+            dest: '<%= wpttenv.themedir %>/'
+          },
+        ],
       },
       postbuild: {
         files: [
@@ -170,7 +176,7 @@ module.exports = function(grunt) {
   grunt.registerTask('php', ['jade', 'splitfile', 'pot']);
 
   // Default task.
-  grunt.registerTask('default', [ 'copy:prebuilt', 'compile', 'copy:postbuild', 'pot' ]);
+  grunt.registerTask('default', [ 'copy:prebuilt', 'copy:prebuilt_raw', 'compile', 'copy:postbuild', 'pot' ]);
 
   grunt.registerTask('setup', function() {
     var wpttenv = grunt.config('wpttenv');
