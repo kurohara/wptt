@@ -22,6 +22,7 @@ div#primary.content-area
       - if ( is_home() && ! is_front_page() ) :
         header
           h1.page-title.screen-reader-text!= single_post_title()
+      - endif
       :php
         // Start the loop.
         while ( have_posts() ) : the_post();
