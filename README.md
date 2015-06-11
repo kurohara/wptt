@@ -20,10 +20,12 @@ Dummy port from the 'Twenty Fifteen' theme which bundled with WordPress.
   grunt setup
   ```
   You will see some questions from setup script, answer  
-  a) the name of theme.  
-  b) the name of author.  
-  c) the location where to put compiled theme files.  
-  Or you can edit 'wpttenv.json' file directory.  
+  * the name of theme.  
+  * the name of author.  
+  * the location where to put compiled theme files.  
+    (I recommend to set this the location under the WordPress theme directory, off cource the directroy with your theme name)  
+
+  Or you can edit 'wpttenv.json' file by hand instead of runnint ```grunt setup```  
 
   ```json  
   {
@@ -36,7 +38,7 @@ Dummy port from the 'Twenty Fifteen' theme which bundled with WordPress.
     "license": "GNU General Public License v2 or later",
     "licenseuri": "http://www.gnu.org/licenses/gpl-2.0.html",
     "tags": "",
-    "themedir": "./theme",
+    "themedir": "/Users/kurohara/work/wordpress/wp-content/theme/mytheme",
     "jadedir": "./src",
     "styldir": "./src",
     "prebuilt": "./src",
