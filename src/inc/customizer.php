@@ -28,7 +28,7 @@ function customize_register( $wp_customize ) {
 	) );
 
 	$wp_customize->add_control( 'color_scheme', array(
-		'label'    => __( 'Base Color Scheme', 'twentyfifteen' ),
+		'label'    => __( 'Base Color Scheme', ns_('') ),
 		'section'  => 'colors',
 		'type'     => 'select',
 		'choices'  => get_color_scheme_choices(),
